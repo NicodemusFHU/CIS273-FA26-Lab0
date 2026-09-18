@@ -15,7 +15,7 @@ public class Program
         // class method (static keyword)
         Vector result2 = Vector.Add(v1, v2);
 
-        // operator overloading 
+        // operator overloading
         Vector result3 = v1 + v2;
     }
 }
