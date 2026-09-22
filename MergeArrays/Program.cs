@@ -15,26 +15,43 @@ public class Program
 
     public static int[] MergeSortedArrays(int[] array1, int[] array2)
     {
-        List<int> sorted = [];
-        int index1 = 0;
-        int index2 = 0;
-        int indexSorted = 0;
-        while (sorted.Count != array1.Length + array2.Length)
+        int[] Sorted = [.. array1, .. array2];
+        int Index1 = 0;
+        int Index2 = 0;
+        int IndexSorted = 0;
+
+        while (Index1 < array1.Length | Index2 < array2.Length)
         {
-            if (array1[index1] < array2[index2])
+            if (Index1 == array1.Length)
             {
-                sorted[indexSorted] = array1[index1];
-                index1 += 1;
-                indexSorted += 1;
+                Console.WriteLine($"{IndexSorted} {Sorted.Length}");
+                Sorted[IndexSorted] = array2[Index2];
+                Index2++;
+                IndexSorted++;
+            }
+            else if(Index2 == array2.Length)
+            {
+                Console.WriteLine($"{IndexSorted} {Sorted.Length}");
+                Sorted[IndexSorted] = array1[Index1];
+                Index1++;
+                IndexSorted++;
+            }
+            else if(array1[Index1] < array2[Index2])
+            {
+                Console.WriteLine($"{IndexSorted} {Sorted.Length}");
+                Sorted[IndexSorted] = array1[Index1];
+                Index1++;
+                IndexSorted++;
             }
             else
             {
-                sorted[indexSorted] = array2[index2];
-                index2 += 1;
-                indexSorted += 1;
+                Console.WriteLine($"{IndexSorted} {Sorted.Length}");
+                Sorted[IndexSorted] = array2[Index2];
+                Index2++;
+                IndexSorted++;
             }
         }
-        return sorted.ToArray();
+        return Sorted;
     }
 
     private static bool IsSorted(int[] array)

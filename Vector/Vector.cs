@@ -5,6 +5,11 @@ namespace Vector;
 
 public struct Vector
 {
+    public Vector()
+    {
+        
+    }
+    
     public Vector(double x, double y)
     {
         X = x;
@@ -50,25 +55,11 @@ public struct Vector
 
     public double AngleBetween(Vector v)
     {
-        if (Direction < v.Direction)
-        {
-            return 0;
-        }
-        else
-        {
-            return Direction-v.Direction;
-        }
+        return Math.Acos(Dot(v)/(Magnitude*v.Magnitude)) * 180/Math.PI;
     }
-        public static double AngleBetween(Vector v1, Vector v2)
+    public static double AngleBetween(Vector v1, Vector v2)
     {
-        if (v1.Direction > v2.Direction)
-        {
-            return 0;
-        }
-        else
-        {
-            return v1.Direction-v2.Direction;
-        }
+        return v1.AngleBetween(v2);
     }
 
     public static Vector Multiply(Vector v, double scalar)
@@ -99,29 +90,11 @@ public struct Vector
 
     public double Dot(Vector v)
     {
-        double cosineinput;
-        if (Direction < v.Direction)
-        {
-            cosineinput = 0;
-        }
-        else
-        {
-            cosineinput = Direction-v.Direction;
-        }
-        return Magnitude * v.Magnitude * Math.Cos(cosineinput);
+        return Dot(this,v);
     }
     public static double Dot(Vector v1, Vector v2)
     {
-        double cosineinput;
-        if (v1.Direction < v2.Direction)
-        {
-            cosineinput = 0;
-        }
-        else
-        {
-            cosineinput = v1.Direction-v2.Direction;
-        }
-        return v1.Magnitude * v2.Magnitude * Math.Cos(cosineinput);
+        return v1.X*v2.X + v1.Y*v2.Y;
     }
     public static double operator*(Vector v1, Vector v2)
     {
